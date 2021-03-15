@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%;
+    background-color: green;
+    
+  }
+  body {
+    min-height: 100%;
+   
+  }
+  .flexi {
+
+   display: flex;
+   background-color: brown;
+
+  }

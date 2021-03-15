@@ -1,0 +1,9 @@
+<div class="disclaimer ">
+  <div class="header">
+    <h4 id="disclaimer-title">{{Model.Title}}</h4>
+    <button id="disclaimer-cross" class="btn btn-primary" mat-raised-button mat-dialog-close>{{Model.CrossButtonText}}</button>
+  </div>
+  <p id="disclaimer-sub-header" class="sub-header">{{Model.Header}}</p>
+  <div id="disclaimer-content" class="content" [innerHTML]="Model.Content"></div>
+  <button id="disclaimer-continue" mat-raised-button class="btn btn-primary continue align-self-end" mat-dialog-close>{{Model.ContinueButtonText}}</button>
+</div>

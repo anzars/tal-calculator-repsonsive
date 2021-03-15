@@ -1,0 +1,8 @@
+<div class="calculator" *ngIf="Model">
+  <div id="welcome-header" class="welcome-header">
+    <h2 id="welcome-header-title">{{Model.Title}}</h2>
+    <div id="welcome-header-content" [innerHTML]="Model.Content"></div>
+  </div>
+  <div id="calculator-results" class="calculator-results"></div>
+  <PersonalDetails id="personal-details" [Model]="PersonalDetailModel"></PersonalDetails>
+</div>

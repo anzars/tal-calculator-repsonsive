@@ -1,0 +1,50 @@
+<div *ngIf="Model.IsVisible==true" class="Actiongroupelement" align="left">
+  <div>
+    <mat-label id="mat-label-top" *ngIf="Type!=FieldTypeEnum.Checkbox && LabelPosition==LabelPositionEnum.Top">{{Model.Label}}</mat-label>
+  </div>
+  <div>
+    <mat-label id="mat-label-left" class="mr-4 ml-4" *ngIf="Type!=FieldTypeEnum.Checkbox && LabelPosition==LabelPositionEnum.Left ">{{Model.Label}}</mat-label>
+    <mat-button-toggle-group [disabled]="Model.IsDisabled" ngDefaultControl *ngIf="(Type == FieldTypeEnum.YesNo)" aria-label="Font Style" [value]="Model.DefaultValue" [formControl]="toggleControl">
+      <mat-button-toggle id="mat-button-toggle-{{toggle.Value}}" *ngFor="let toggle of Model.Values" [value]="toggle.Value">{{toggle.Text}}</mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-error class="ml-4" *ngIf="(Type == FieldTypeEnum.YesNo) && Model.ValidationRules.Required.Value && toggleControl.value==null && toggleControl.touched ">
+      {{Model.ValidationRules.Required.MessageOnError}}
+    </mat-error>
+    <mat-form-field *ngIf="(Type == FieldTypeEnum.Number)">
+      <input type="number" id="input-number" matInput [formControl]="inputNumberControl" [disabled]="Model.IsDisabled" [(ngModel)]="Model.DefaultValue" placeholder="{{Model.PlaceHolder}}">
+      <mat-error *ngIf="Model.ValidationRules.Required.Value && inputNumberControl.hasError('required')">
+        {{Model.ValidationRules.Required.MessageOnError}}
+      </mat-error>
+      <mat-error *ngIf="Model.ValidationRules.Min && inputNumberControl.hasError('min')">
+        {{Model.ValidationRules.Min.MessageOnError}}
+      </mat-error>
+      <mat-error *ngIf="Model.ValidationRules.Max && inputNumberControl.hasError('max')">
+        {{Model.ValidationRules.Max.MessageOnError}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="(Type == FieldTypeEnum.Text)">
+      <input type="text" id="input-text" matInput [formControl]="inputTextControl" ngDefaultControl [disabled]="Model.IsDisabled" [(ngModel)]="Model.DefaultValue" placeholder="{{Model.PlaceHolder}}">
+      <mat-error *ngIf="Model.ValidationRules.Required.Value && inputTextControl.hasError('required')">
+        {{Model.ValidationRules.Required.MessageOnError}}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" *ngIf="Type == FieldTypeEnum.Dropdown">
+      <mat-select id="dropdown" [formControl]="dropdownControl" [disabled]="Model.IsDisabled" [name]="dropdowncontrol" ngDefaultControl [(ngModel)]="Model.DefaultValue" required>
+        <mat-option *ngFor="let option of Model.Values" [value]="option.Value">
+          {{option.Text}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="Model.ValidationRules.Required.Value && dropdownControl.hasError('required')">
+        {{Model.ValidationRules.Required.MessageOnError}}
+      </mat-error>
+    </mat-form-field>
+    <img src='assets/images/tooltip.png' matTooltip="{{Model.ToolTip}}" *ngIf="Model.ToolTip">
+    <div *ngIf="Type == FieldTypeEnum.Checkbox" class="ml-4">
+      <mat-checkbox id="checkbox" [formControl]="checkboxControl" [disabled]="Model.IsDisabled" ngDefaultControl [(ngModel)]="Model.DefaultValue"><span [innerHTML]="Model.Label"></span></mat-checkbox>
+      <mat-error *ngIf="Model.ValidationRules.Required.Value && checkboxControl.hasError('required')">
+        {{Model.ValidationRules.Required.MessageOnError}}
+      </mat-error>
+    </div>
+    <button id="mat-button" mat-raised-button class="btn ml-4 " ngDefaultControl (click)="OnClick()" [(ngModel)]="Model.DefaultValue" [disabled]="Model.IsDisabled" *ngIf="Model.IsVisible && Type ==FieldTypeEnum.Button">{{Model.Label}}</button>
+  </div>
+</div>
