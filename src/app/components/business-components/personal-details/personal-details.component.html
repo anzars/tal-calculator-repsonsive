@@ -1,0 +1,29 @@
+<div class="col-xs-1" align="center">
+  <div class="border border-primary w-50" *ngIf="Model">
+    <h2 id="personal-details-title" class="ml-4" align="left">{{Model.Title}}</h2>
+    <div id="personal-details-subheader" [innerHTML]="Model.SubHeader" class="ml-4" align="left">
+    </div>
+    <hr>
+    <ActionGroupElement id="personal-details-age" #Age [Type]="FieldTypeEnum.Number" [Model]="Model.Age" [LabelPosition]="LabelPos.Left"></ActionGroupElement>
+    <ActionGroupYesNoButtons id="personal-details-gender" #Gender [Model]="Model.Gender"></ActionGroupYesNoButtons>
+    <div class="row">
+      <ActionGroupElement id="personal-details-salary" #Salary [Type]="FieldTypeEnum.Number" [Model]="Model.Salary" [LabelPosition]="LabelPos.Left"></ActionGroupElement>
+      <ActionGroupDropdownList id="personal-details-salary-frequency" #SalaryFrequency [Model]="Model.SalaryFrequency"></ActionGroupDropdownList>
+    </div>
+    <hr>
+    <div class="row">
+      <ActionGroupButton id="personal-details-needs" (OnClick)="NeedsClicked()" [Model]="Model.NeedsButton"></ActionGroupButton>
+      <ActionGroupButton id="personal-details-cost" (OnClick)="RatesClicked()" [Model]="Model.CostButton"></ActionGroupButton>
+    </div>
+    <hr>
+    <ActionGroupYesNoButtons id="personal-details-spouse" [Model]="Model.Spouse" [LabelPosition]="LabelPos.Left"></ActionGroupYesNoButtons>
+    <ActionGroupDropdownList id="personal-details-children" [Model]="Model.Children"></ActionGroupDropdownList>
+    <div id="personal-details-ages" *ngFor="let child of Model.ChildAges;let i=index;">
+      <ActionGroupElement id="personal-details-age-{{i}}" [Type]="FieldTypeEnum.Number" [Model]="child" [LabelPosition]="LabelPos.Left" *ngIf="i<Model.Children.DefaultValue"></ActionGroupElement>
+    </div>
+    <hr>
+    <ActionGroupElement id="personal-details-disclaimer-confirmation" [Type]="FieldTypeEnum.Checkbox" [Model]="Model.DisclaimerConfirmation" [LabelPosition]="LabelPos.Left"></ActionGroupElement>
+    <ActionGroupButton id="personal-details-continue" [Model]="Model.ContinueButton"></ActionGroupButton>
+  </div>
+</div>
+

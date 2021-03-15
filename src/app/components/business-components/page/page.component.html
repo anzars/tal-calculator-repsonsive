@@ -1,0 +1,21 @@
+<head>
+  <meta charset="utf-8">
+  <title *ngIf="Model">{{Model.Title}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body *ngIf="Model" class="mat-typography">
+  <header>
+    <img id="logo" src="{{Model.Header.Logo}}" class="logo" alt="{{Model.Header.FundName}}">
+  </header>
+  <section>
+    <Calculator></Calculator>
+  </section>
+  <footer>
+    <a id="lnk-assumption" href="#">{{Model.Footer.AssumptionLinkText}}</a>
+    <a id="lnk-disclaimer" (click)="ShowDisclaimerOnDemand()" class="text-primary">{{Model.Footer.DisclaimerLinkText}}</a>
+    <span id="copyright">{{Model.Footer.CopyrightInfo}}</span>
+  </footer>
+</body>
